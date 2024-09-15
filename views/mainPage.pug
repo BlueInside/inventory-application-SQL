@@ -2,16 +2,17 @@
 extends layout
 
 block content
-    h2 Our games collection.
+    h2 Browse our games collection.
 
-    
+    include searchForm.pug
+
     if games 
         ul 
             each game in games
                 li 
                     div 
                         img(src=game.image, alt=`${game.title} image`)
-                        p= game.name 
+                        p= game.title 
 
 
 
