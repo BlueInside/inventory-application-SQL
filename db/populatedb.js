@@ -17,7 +17,7 @@ name VARCHAR(30)
 
 CREATE TABLE IF NOT EXISTS games (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR ( 30 ),
+    name title ( 30 ),
     description TEXT, 
     image VARCHAR(255),
     rate INTEGER, 
@@ -54,7 +54,7 @@ VALUES
     ('MMORPG'), 
     ('Action');
 
-    INSERT INTO games (name, description, image, rate, publisher_id)
+    INSERT INTO games (title, description, image, rate, publisher_id)
 VALUES 
     ('The Witcher 3: Wild Hunt', 'An open-world RPG set in a fantasy universe', 'https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png', 10, 4),  -- CD Projekt Red, RPG
     ('The Last of Us', 'A post-apocalyptic action-adventure game', 'https://static.posters.cz/image/750/posters/the-last-of-us-key-art-i127761.jpg', 9, 2),  -- Bethesda, Action
