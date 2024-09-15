@@ -8,7 +8,7 @@ async function getAllGames() {
 async function getGame(id) {
     const { rows: gameRows } = await pool.query(`
        SELECT 
-       games.name AS game_name,
+       games.title AS game_title,
        publishers.name AS publisher_name,
        games.description,    
        games.image,
