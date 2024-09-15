@@ -1,0 +1,36 @@
+form(action=`/game/${game.id}?_method=PUT` method='POST')
+    //- Stimulate PUT
+    input(type="hidden" name="_method" value="PUT") 
+
+    label Title:
+        input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30" value= #{game.title}); 
+    label Description:
+        input(type="text" minlength='1' name='description' value= #{game.description}) 
+    label Image url:    
+        input(type="text" maxlength='255' name='image' value= #{game.image})
+    label Rating: 
+        input(type="range" min='1' max='10' value=#{game.rate} step='1');
+    label Publisher: 
+        select(name='publisher_id')
+            option(value= #{game.publisher_name}) --Select publisher--
+            each publisher in publishers 
+                option(value=publisher.id) #{publisher.name}
+            option(value="new") Add New Publisher
+
+    //- Display when user wants to add new publisher
+    div(id="new_publisher_field" style="display:none")
+        label New Publisher:
+        input(type="text" name="new_publisher" placeholder="Enter new publisher name" minlength="3" maxlength="30")
+
+    button(type="submit") Update game
+
+script.
+    document.querySelector('select[name="publisher_id"]').addEventListener('change', function() {
+        const newPublisherField = document.getElementById('new_publisher_field');
+        if (this.value === 'new') {
+            newPublisherField.style.display = 'block';
+        } else {
+            newPublisherField.style.display = 'none';
+        }
+    });
+    
