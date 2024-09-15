@@ -1,6 +1,9 @@
+const db = require('../db/queries');
+
 async function getGameDetails(req, res) {
     const { gameId } = req.params;
-    res.send(`Game: ${gameId}} page`)
+    const game = await db.getGame(gameId);
+    res.render(`gameDetails`, { game: game })
 };
 
 async function addGame(req, res) {
