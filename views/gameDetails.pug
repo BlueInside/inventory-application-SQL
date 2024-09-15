@@ -3,7 +3,7 @@ extends layout
 block content
 
     if game
-        h2= game.game_name 
+        h2= game.game_title
         img(src=game.image, alt=`${game.name}'s image`)
         p= `Publisher: ${game.publisher_name}`
         p= `Rating: ${game.rate}/10`
