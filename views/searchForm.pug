@@ -1,0 +1,11 @@
+form(action="/", method="GET")
+    label(for="title") Title: 
+        input(type="text" name='name')
+    label(for="producer") Choose a producer:
+        select(name="producer" id='producer')
+            option(value="1" selected) Bethesda    
+    label(for="category") Choose genre: 
+        select(name="category" id='category')
+            option(value='1' selected) Action
+
+    button(type='submit') Search
