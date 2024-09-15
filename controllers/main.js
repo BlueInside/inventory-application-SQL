@@ -1,8 +1,10 @@
-async function getMainPage(req, res) {
+const db = require('../db/queries');
 
-    res.render('mainPage')
+async function getMainPage(req, res) {
+    const games = await db.getAllGames();
+    res.render('mainPage', { games: games })
 }
 
 module.exports = {
-    getMainPage
+    getMainPage,
 }
