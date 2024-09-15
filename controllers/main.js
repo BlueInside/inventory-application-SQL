@@ -1,5 +1,6 @@
 async function getMainPage(req, res) {
-    res.send('Main page inventory app')
+
+    res.render('mainPage')
 }
 
 module.exports = {
