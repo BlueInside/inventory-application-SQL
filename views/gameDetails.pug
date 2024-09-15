@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+    if game
+        h2= game.game_name 
+        img(src=game.image, alt=`${game.name}'s image`)
+        p= `Publisher: ${game.publisher_name}`
+        p= `Rating: ${game.rate}/10`
+        p= game.description
+
+        if (game.comments.length > 0) 
+            h3 comments: 
+            each comment in game.comments 
+                hr
+                p user: #{comment.username}
+                p #{comment.text}
+        else 
+            h3 Game has no reviews yet!
+    else  
+        h2 sorry couldn't find the game    
