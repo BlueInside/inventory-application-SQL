@@ -62,7 +62,15 @@ async function getGame(id) {
     return { ...gameRows[0], comments: commentRows }
 }
 
+async function getAllPublishers() {
+    const { rows: publishers } = await pool.query(`
+        SELECT id, name FROM publishers;
+        `)
+
+    return publishers;
+}
 module.exports = {
     getAllGames,
-    getGame
+    getGame,
+    getAllPublishers
 }
