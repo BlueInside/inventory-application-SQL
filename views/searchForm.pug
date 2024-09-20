@@ -2,8 +2,9 @@ form(action="/", method="GET")
     label(for="title") Title: 
         input(type="text" name='title')
     label(for="publisher") Choose a publisher:
-        select(name="publisher" id='publisher')
-            option(value="1" selected) Bethesda    
+        select(name='publisher' id='publisher')
+            each publisher of publishers 
+                option(value=publisher.id) #{publisher.name}    
     label(for="category") Choose genre: 
         select(name="category" id='category')
             option(value='1' selected) Action
