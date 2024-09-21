@@ -13,6 +13,7 @@ async function addGame(req, res) {
 
 async function updateGame(req, res) {
     const { gameId } = req.params;
+
     res.send(`Game: ${gameId} has been updated`)
 };
 
