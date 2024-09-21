@@ -69,8 +69,18 @@ async function getAllPublishers() {
 
     return publishers;
 }
+
+async function getAllCategories() {
+    const { rows: categories } = await pool.query(`
+        SELECT id, genre FROM categories
+        `)
+
+    return categories;
+}
+
 module.exports = {
     getAllGames,
     getGame,
-    getAllPublishers
+    getAllPublishers,
+    getAllCategories
 }
