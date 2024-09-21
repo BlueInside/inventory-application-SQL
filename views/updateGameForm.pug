@@ -1,7 +1,15 @@
-form(action=`/game/${game.id}?_method=PUT` method='POST')
+form(action=`/game/${game.id}/?_method=PUT` method='POST')
+    if errors   
+        ul
+            each error of errors 
+                li 
+                    p= error.msg
+
     //- Stimulate PUT
     input(type="hidden" name="_method" value="PUT") 
 
+    label Admin password: 
+        input(type="password" name='password')
     label Title:
         input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30" value=`${game.game_title}` )
     label Description:
@@ -15,22 +23,7 @@ form(action=`/game/${game.id}?_method=PUT` method='POST')
             option(value="") --Select publisher--
             each publisher in publishers 
                 option(value=publisher.id) #{publisher.name}
-            option(value="new") Add New Publisher
 
-    //- Display when user wants to add new publisher
-    div(id="new_publisher_field" style="display:none")
-        label New Publisher:
-        input(type="text" name="new_publisher" placeholder="Enter new publisher name" minlength="3" maxlength="30")
+    button(type='submit') Update game
 
-    button(type="submit") Update game
-
-script.
-    document.querySelector('select[name="publisher_id"]').addEventListener('change', function() {
-        const newPublisherField = document.getElementById('new_publisher_field');
-        if (this.value === 'new') {
-            newPublisherField.style.display = 'block';
-        } else {
-            newPublisherField.style.display = 'none';
-        }
-    });
-    
+include addPublisherForm.pug
