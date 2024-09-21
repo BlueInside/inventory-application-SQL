@@ -45,6 +45,7 @@ SELECT DISTINCT games.*, publishers.name AS publisher_name
 async function getGame(id) {
     const { rows: gameRows } = await pool.query(`
        SELECT 
+       games.id,
        games.title AS game_title,
        publishers.name AS publisher_name,
        games.description,    

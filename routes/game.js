@@ -10,4 +10,6 @@ gameRouter.put('/:gameId', gameController.updateGame)
 
 gameRouter.delete('/:gameId', gameController.deleteGame);
 
+gameRouter.get('/:gameId/edit', gameController.editGameDetails)
+
 module.exports = gameRouter

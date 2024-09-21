@@ -3,16 +3,16 @@ form(action=`/game/${game.id}?_method=PUT` method='POST')
     input(type="hidden" name="_method" value="PUT") 
 
     label Title:
-        input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30" value= #{game.title}); 
+        input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30" value=`${game.game_title}` )
     label Description:
-        input(type="text" minlength='1' name='description' value= #{game.description}) 
+        input(type="text" minlength='1' name='description' value=`${game.description}`) 
     label Image url:    
-        input(type="text" maxlength='255' name='image' value= #{game.image})
+        input(type="text" maxlength='255' name='image' value=`${game.image}`)
     label Rating: 
-        input(type="range" min='1' max='10' value=#{game.rate} step='1');
+        input(type="range" min='1' max='10' value=`${game.rate}` step='1')
     label Publisher: 
         select(name='publisher_id')
-            option(value= #{game.publisher_name}) --Select publisher--
+            option(value="") --Select publisher--
             each publisher in publishers 
                 option(value=publisher.id) #{publisher.name}
             option(value="new") Add New Publisher

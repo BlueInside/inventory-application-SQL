@@ -10,9 +10,11 @@ block content
         ul 
             each game in games
                 li 
-                    div 
-                        img(src=game.image, alt=`${game.title} image`)
-                        p= game.title 
+                    a(href=`/game/${game.id}`)
+                
+                        div 
+                            img(src=game.image, alt=`${game.title} image`)
+                            p= game.title 
 
 
 
