@@ -1,0 +1,5 @@
+form(action=`/publisher` method='POST')
+    label(for="newPublisher") 
+        input(type='text' name='newPublisher' id='newPublisher' placeholder='Add new publisher.')
+    input(type="hidden" value=game.id name='gameId')
+    button(type='submit') Add new publisher
