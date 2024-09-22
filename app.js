@@ -13,6 +13,7 @@ const gameController = require('./controllers/game')
 const port = process.env.PORT
 
 const gameRouter = require('./routes/game');
+const publisherRouter = require('./routes/publisher');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -20,6 +21,8 @@ app.set('view engine', 'pug');
 
 app.get('/', mainPageController.getMainPage);
 
+
+app.use('/publisher', publisherRouter)
 app.use('/game', gameRouter);
 
 
