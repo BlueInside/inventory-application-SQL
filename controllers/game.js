@@ -6,9 +6,9 @@ async function getGameDetails(req, res) {
     res.render(`gameDetails`, { game: game })
 };
 
-async function addGame(req, res) {
-    const { gameId } = req.params;
-    res.send(`Game: ${gameId} page`)
+async function addGameForm(req, res) {
+    const publishers = await db.getAllPublishers();
+    res.render(`addGameForm`, { publishers });
 };
 
 async function updateGame(req, res) {
@@ -31,8 +31,8 @@ async function editGameDetails(req, res) {
 
 module.exports = {
     getGameDetails,
-    addGame,
     deleteGame,
     updateGame,
     editGameDetails,
+    addGameForm
 }
