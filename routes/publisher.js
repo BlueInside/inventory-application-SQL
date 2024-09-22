@@ -5,6 +5,6 @@ const { publisherValidation, validateAndRenderUpdateForm, validateAndRenderPubli
 
 publisherRouter.get('/', publisherController.getAllPublishers);
 publisherRouter.put('/', publisherValidation(), validateAndRenderPublishers, publisherController.changePublisherName)
-publisherRouter.post('/', publisherValidation(), validateAndRenderUpdateForm, publisherController.addPublisher);
+publisherRouter.post('/', publisherValidation(), validateAndRenderPublishers, publisherController.addPublisher);
 publisherRouter.delete('/', publisherController.deletePublisher)
 module.exports = publisherRouter
