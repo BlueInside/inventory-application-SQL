@@ -14,7 +14,15 @@ async function addPublisher(req, res, next) {
     res.redirect(`/game/${gameId}/edit`)
 }
 
+async function getAllPublishers(req, res, next) {
+    const publishers = await db.getAllPublishers();
+
+    res.render('displayPublishers', { publishers })
+}
+
 module.exports = {
     addPublisher,
+    getAllPublishers,
+
 
 }
