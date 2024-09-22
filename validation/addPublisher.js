@@ -2,7 +2,7 @@ const { body, validationResult } = require('express-validator');
 const db = require('../db/queries');
 
 const publisherValidation = () => [
-    body('newPublisher')
+    body('publisherName')
         .notEmpty().withMessage('Publisher name cannot be empty.')
         .isLength({ min: 1, max: 30 }).withMessage('Publisher name must be between 3-30 characters long.')
 ]
@@ -22,7 +22,20 @@ async function validateAndRenderUpdateForm(req, res, next) {
     }
 }
 
+async function validateAndRenderPublishers(req, res, next) {
+    const result = validationResult(req)
+    const publishers = await db.getAllPublishers();
+
+
+    if (!result.isEmpty()) {
+        res.render('displayPublishers', { publishers, errors: result.array() })
+    } else {
+        next();
+    }
+}
+
 module.exports = {
     publisherValidation,
-    validateAndRenderUpdateForm
+    validateAndRenderUpdateForm,
+    validateAndRenderPublishers
 }
