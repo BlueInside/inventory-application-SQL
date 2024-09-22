@@ -5,7 +5,9 @@ block content
     h2 Browse our games collection.
 
     include searchForm.pug
-
+    
+    a(href="/game/new")
+        button(type="button") Add new game 
     if games 
         ul 
             each game in games
