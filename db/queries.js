@@ -79,9 +79,16 @@ async function getAllCategories() {
     return categories;
 }
 
+async function createPublisher(name) {
+    await pool.query(`
+    INSERT INTO publishers (name) VALUES ($1);
+    `, [name])
+}
+
 module.exports = {
     getAllGames,
     getGame,
     getAllPublishers,
-    getAllCategories
+    getAllCategories,
+    createPublisher,
 }
