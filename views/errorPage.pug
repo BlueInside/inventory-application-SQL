@@ -1,0 +1,10 @@
+extends layout 
+
+block content 
+
+    h2=  `Oh no something really wrong happened :(`
+    if error.message    
+        p= `${error.message}`
+    p To get back to main menu please 
+    a(href="/") click here
+    
