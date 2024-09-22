@@ -1,6 +1,7 @@
 const express = require('express');
 const methodOverride = require('method-override');
 const path = require('node:path');
+const asyncHandler = require('express-async-handler');
 require('dotenv').config();
 
 const app = express();
@@ -19,13 +20,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 
-app.get('/', mainPageController.getMainPage);
+app.get('/', asyncHandler(mainPageController.getMainPage));
 
 
 app.use('/publisher', publisherRouter)
 app.use('/game', gameRouter);
-
-
 
 
 app.listen(port, () => {
