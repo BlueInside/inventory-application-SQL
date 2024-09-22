@@ -16,23 +16,42 @@ async function addPublisher(req, res, next) {
 async function getAllPublishers(req, res, next) {
     const publishers = await db.getAllPublishers();
 
+    if (!publisers) {
+        throw new Error('Failed to load publishers.')
+    }
     res.render('displayPublishers', { publishers })
 }
 
 async function deletePublisher(req, res, next) {
     const publisherId = req.body.publisherId;
+    try {
+        await db.deletePublisher(publisherId);
 
-    await db.deletePublisher(publisherId);
+    } catch (error) {
+        throw new Error('Failed to delete publisher.')
+    }
 
     const publishers = await db.getAllPublishers();
 
+    if (!publishers) {
+        throw new Error('Failed to load publishers.')
+    }
     res.render('displayPublishers', { publishers })
 }
 
 async function changePublisherName(req, res, next) {
     const publisherId = req.body.publisherId;
     const name = req.body.publisherName
-    await db.updatePublisher(publisherId, name);
+
+    if (!name || publisherId) {
+        throw new Error('Received invalid data, publisher name change failed.')
+    }
+    try {
+        await db.updatePublisher(publisherId, name);
+
+    } catch (error) {
+        throw new Error('Failed to change publisher name.')
+    }
 
     res.redirect('/publisher')
 }
