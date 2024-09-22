@@ -65,7 +65,8 @@ async function getGame(id) {
 
 async function getAllPublishers() {
     const { rows: publishers } = await pool.query(`
-        SELECT id, name FROM publishers;
+        SELECT id, name FROM publishers
+        ORDER BY name;
         `)
 
     return publishers;
@@ -85,10 +86,24 @@ async function createPublisher(name) {
     `, [name])
 }
 
+async function deletePublisher(id) {
+    await pool.query(`
+        DELETE FROM publishers WHERE id = $1;
+        `, [id])
+};
+
+async function updatePublisher(id, name) {
+    await pool.query(`
+    UPDATE publishers SET name = $1
+    WHERE id = $2;
+    `, [name, id])
+}
 module.exports = {
     getAllGames,
     getGame,
     getAllPublishers,
     getAllCategories,
     createPublisher,
+    deletePublisher,
+    updatePublisher,
 }
