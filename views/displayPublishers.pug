@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+
+    if !publishers 
+        h2 Sorry there is no publishers to display 
+    else 
+        h2 list of all publishers
+        ul 
+        each publisher of publishers 
+            li= `${publisher.id}  ${publisher.name}`
+            form(action="/publisher/delete?_method=DELETE" method="POST") 
+                input(type="hidden" name="_method" value="DELETE") 
+
+                input(type="hidden" name='publisherId' value= `${publisher.id}`)
+                button(type="submit") X
