@@ -26,6 +26,10 @@ app.get('/', asyncHandler(mainPageController.getMainPage));
 app.use('/publisher', publisherRouter)
 app.use('/game', gameRouter);
 
+app.use((error, req, res, next) => {
+    console.error(error.stack);
+    res.render('errorPage', { error })
+})
 
 app.listen(port, () => {
     console.log('Inventory app listening on port: ' + port)
