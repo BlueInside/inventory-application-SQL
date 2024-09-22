@@ -37,7 +37,6 @@ SELECT DISTINCT games.*, publishers.name AS publisher_name
 
     query += ' ORDER BY games.title ASC';
 
-    console.log(query)
     const { rows } = await pool.query(query, values);
     return rows;
 }
