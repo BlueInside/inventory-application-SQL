@@ -98,6 +98,11 @@ async function updatePublisher(id, name) {
     WHERE id = $2;
     `, [name, id])
 }
+
+async function createGame() {
+
+}
+;
 module.exports = {
     getAllGames,
     getGame,
