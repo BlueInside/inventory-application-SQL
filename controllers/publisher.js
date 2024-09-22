@@ -13,10 +13,11 @@ async function addPublisher(req, res, next) {
     res.redirect(`/publisher`)
 }
 
+
 async function getAllPublishers(req, res, next) {
     const publishers = await db.getAllPublishers();
 
-    if (!publisers) {
+    if (!publishers) {
         throw new Error('Failed to load publishers.')
     }
     res.render('displayPublishers', { publishers })
