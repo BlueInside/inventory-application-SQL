@@ -1,17 +1,16 @@
 const db = require('../db/queries');
 
 async function addPublisher(req, res, next) {
-    const name = req.body.newPublisher;
-    const gameId = req.body.gameId;
+    const name = req.body.publisherName;
 
-    if (!name || !gameId) {
+    if (!name) {
         throw new Error('Failed to create publisher')
     }
 
     // CALL TO DB to create publisher
     await db.createPublisher(name)
     // redirect to the edit 
-    res.redirect(`/game/${gameId}/edit`)
+    res.redirect(`/publisher`)
 }
 
 async function getAllPublishers(req, res, next) {
