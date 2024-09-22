@@ -9,7 +9,7 @@ async function getGameDetails(req, res) {
 
     const game = await db.getGame(gameId);
 
-    if (!game) {
+    if (!game || !game?.id) {
         throw new Error('Failed to fetch game details from database.')
     }
 
