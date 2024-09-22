@@ -20,9 +20,28 @@ async function getAllPublishers(req, res, next) {
     res.render('displayPublishers', { publishers })
 }
 
+async function deletePublisher(req, res, next) {
+    const publisherId = req.body.publisherId;
+
+    await db.deletePublisher(publisherId);
+
+    const publishers = await db.getAllPublishers();
+
+    res.render('displayPublishers', { publishers })
+}
+
+async function changePublisherName(req, res, next) {
+    const publisherId = req.body.publisherId;
+    const name = req.body.publisherName
+    await db.updatePublisher(publisherId, name);
+
+    res.redirect('/publisher')
+}
 module.exports = {
     addPublisher,
     getAllPublishers,
+    deletePublisher,
+    changePublisherName,
 
 
 }
