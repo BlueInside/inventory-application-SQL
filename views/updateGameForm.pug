@@ -1,29 +1,34 @@
-form(action=`/game/${game.id}/?_method=PUT` method='POST')
-    if errors   
-        ul
-            each error of errors 
-                li 
-                    p= error.msg
 
-    //- Stimulate PUT
-    input(type="hidden" name="_method" value="PUT") 
+extends layout
 
-    label Admin password: 
-        input(type="password" name='password')
-    label Title:
-        input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30" value=`${game.game_title}` )
-    label Description:
-        input(type="text" minlength='1' name='description' value=`${game.description}`) 
-    label Image url:    
-        input(type="text" maxlength='255' name='image' value=`${game.image}`)
-    label Rating: 
-        input(type="range" min='1' max='10' value=`${game.rate}` step='1')
-    label Publisher: 
-        select(name='publisher_id')
-            option(value="") --Select publisher--
-            each publisher in publishers 
-                option(value=publisher.id) #{publisher.name}
+block content
+    form(action=`/game/${game.id}/?_method=PUT` method='POST')
+            if errors   
+                ul
+                    each error of errors 
+                        li 
+                            p= error.msg
 
-    button(type='submit') Update game
+            //- Stimulate PUT
+            input(type="hidden" name="_method" value="PUT") 
 
-include addPublisherForm.pug
+            label Admin password: 
+                input(type="password" name='password')
+            label Title:
+                input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30" value=`${game.game_title}` )
+            label Description:
+                input(type="text" minlength='1' name='description' value=`${game.description}`) 
+            label Image url:    
+                input(type="text" maxlength='255' name='image' value=`${game.image}`)
+            label Rating: 
+                input(type="range" min='1' max='10' value=`${game.rate}` step='1')
+            label Publisher: 
+                select(name='publisher_id')
+                    option(value="") --Select publisher--
+                    each publisher in publishers 
+                        option(value=publisher.id) #{publisher.name}
+
+            button(type='submit') Update game
+
+    a(href="/publisher")
+        button(type='button') edit publishers 
