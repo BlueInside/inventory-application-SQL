@@ -2,25 +2,19 @@
 extends layout
 
 block content
-    h2 Browse our games collection.
+    .container
+        h2.my-4.text-center Browse our games collection.
 
-    include searchForm.pug
-    
-    a(href="/game/new")
-        button(type="button") Add new game 
-    a(href="/publisher")
-        button(type="button") Edit publishers
-    if games 
-        ul 
-            each game in games
-                li 
-                    a(href=`/game/${game.id}`)
-                
-                        div 
-                            img(src!=`${game.image}`, alt=`${game.title} image`)
-                            p= game.title 
-
-
-
-    else 
-        h3= `There's no games to display :(`
+        include searchForm.pug
+        
+        if games && games.length
+            .row 
+                each game in games
+                    .col-md-4.mb-4
+                        .card.h-100.position-relative.d-flex.flex-column
+                            img.card-img-top.img-fluid(style='height: 300px; object-fit: cover;' src!=game.image, alt=`${game.title} image`)
+                            .card-body.d-flex.flex-column.flex-grow-1
+                            h5.card-title.flex-grow-1.text-center= game.title
+                            a.stretched-link(href=`/game/${game.id}`)
+        else 
+            h3.text-center.mt-5= `There's no games to display :(`

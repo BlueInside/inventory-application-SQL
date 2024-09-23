@@ -1,24 +1,26 @@
 extends layout
 
 block content
-
+  .container
     if game
-        div
-            h2= game.game_title 
-            a(href=`/game/${game.id}/edit`) 
-                button edit
-        img(src!=game.image, alt=`${game.name}'s image`)
-        p= `Publisher: ${game.publisher_name}`
-        p= `Rating: ${game.rate}/10`
-        p= game.description
+      .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0= game.game_title
+        a.btn.btn-primary(href=`/game/${game.id}/edit`) Edit
 
-        if (game.comments.length > 0) 
-            h3 comments: 
-            each comment in game.comments 
-                hr
-                p user: #{comment.username}
-                p #{comment.text}
-        else 
-            h3 Game has no reviews yet!
-    else  
-        h2 sorry couldn't find the game    
+      img.img-fluid.mb-4.mx-auto.d-block(src!=game.image, alt=`${game.game_title} image`)
+
+      p.lead Publisher: #{game.publisher_name}
+      p.lead Rating: #{game.rate}/10
+      p.mb-4= game.description
+
+      if game.comments.length > 0
+        h3.mt-5 Comments:
+        .list-group
+          each comment in game.comments
+            .list-group-item
+              h5.mb-1= comment.username
+              p.mb-1= comment.text
+      else
+        h3.mt-5 Game has no reviews yet!
+    else
+      h2.text-center.mt-5 Sorry, couldn't find the game

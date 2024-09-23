@@ -1,15 +1,18 @@
-form(action="/", method="GET")
-    label(for="title") Title: 
-        input(type="text" name='title')
-    label(for="publisher") Choose a publisher:
-        select(name='publisher' id='publisher')
-            option(value="") --Please choose a publisher--
-            each publisher of publishers 
-                option(value=publisher.id) #{publisher.name}    
-    label(for="category") Choose genre: 
-        select(name="category" id='category')
-            option(value="") --Please choose a category--
-            each category of categories
-                option(value=category.id) #{category.genre}
-
-    button(type='submit') Search
+form(action='/' method='GET' class='row g-3 mb-4')
+  .col-md-4
+    label.form-label(for='title') Title:
+    input.form-control#title(type='text' name='title')
+  .col-md-4
+    label.form-label(for='publisher') Choose a publisher:
+    select.form-select#publisher(name='publisher')
+      option(value='') --Publisher--
+      each publisher in publishers 
+        option(value=publisher.id)= publisher.name
+  .col-md-4
+    label.form-label(for='category') Category:
+    select.form-select#category(name='category')
+      option(value='') --Category--
+      each category in categories
+        option(value=category.id)= category.genre
+  .col-12.text-center
+    button.btn.btn-primary(type='submit') Search

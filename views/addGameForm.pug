@@ -1,30 +1,40 @@
 extends layout
 
 block content
-    h2 Please provide some details about the game.
-    if errors 
-        each error of errors    
-            p= error.msg
-    form(action="/game" METHOD='POST')
-        label Admin password: 
-            input(type="password" name="password" required)
-        label Title:
-            input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30")
-        label Description:
-            input(type="text" minlength='1' name='description' placeholder='Game description') 
-        label Image url:    
-            input(type="text" maxlength='255' name='image' placeholder='direct url to the image')
-        label Rating: 
-            input(type="range" name="rate" min='1' max='10' value='5' step='1')
-         label Publisher: 
-            select(name='publisherId')
-                option(value="") --Select publisher--
-                each publisher in publishers 
-                    option(value=`${publisher.id}`) #{publisher.name}
-        button(type='submit') Add game
+    .container
+        h2.my-4.text-center Please provide some details about the game
 
-    a(href="/publisher")
-        button(type="button") Publishers setting 
+        if errors
+            .alert.alert-danger
+                ul.mb-0
+                each error in errors
+                    li= error.msg
+
+        form(action="/game" method='POST' class='needs-validation' novalidate)
+            .mb-3
+                label.form-label(for='password') Admin password:
+                input.form-control#password(type='password' name='password' required)
+            .mb-3
+                label.form-label(for='title') Title:
+                input.form-control#title(type='text' name='title' placeholder='Last of us' minlength='3' maxlength='30' required)
+            .mb-3
+                label.form-label(for='description') Description:
+                textarea.form-control#description(name='description' placeholder='Game description' minlength='1' required)
+            .mb-3
+                label.form-label(for='image') Image URL:
+                input.form-control#image(type='text' name='image' placeholder='Direct URL to the image' maxlength='255' required)
+            .mb-3
+                label.form-label(for='rate') Rating:
+                input.form-range#rate(type='range' name='rate' min='1' max='10' value='5' step='1')
+            .mb-3
+                label.form-label(for='publisherId') Publisher:
+                select.form-select#publisherId(name='publisherId' required)
+                    option(value='') --Select publisher--
+                    each publisher in publishers 
+                        option(value=publisher.id)= publisher.name
+            button.btn.btn-primary(type='submit') Add game
+
+    a.btn.btn-secondary.mt-3(href="/publisher") Publishers setting
 
 
        

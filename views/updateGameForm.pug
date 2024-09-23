@@ -1,40 +1,50 @@
-
 extends layout
 
 block content
-    form(action=`/game/${game.id}/?_method=PUT` method='POST')
-            if errors   
-                ul
-                    each error of errors 
-                        li 
-                            p= error.msg
+  .container
+    h2.my-4.text-center Update Game Details
 
-            //- Stimulate PUT
-            input(type="hidden" name="_method" value="PUT") 
+    if errors   
+      .alert.alert-danger
+        ul.mb-0
+          each error in errors 
+            li= error.msg
 
-            label Admin password: 
-                input(type="password" name='password' required)
-            label Title:
-                input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30" required value=`${game.game_title}` )
-            label Description:
-                input(type="text" minlength='1' name='description' required value=`${game.description}`) 
-            label Image url:    
-                input(type="text" maxlength='255' name='image' required value=`${game.image}`)
-            label Rating: 
-                input(type="range" name='rate' min='1' max='10' value=`${game.rate}` step='1' required)  
-            label Publisher: 
-                select(name='publisherId')
-                    option(value="") --Select publisher--
-                    each publisher in publishers 
-                        option(value=publisher.id, selected=publisher.id == game.publisher_id) #{publisher.name}
+    form(action=`/game/${game.id}/?_method=PUT` method='POST' class='needs-validation' novalidate)
+      input(type='hidden' name='_method' value='PUT') 
 
-            button(type='submit') Update game
-   
-    a(href="/publisher")
-        button(type='button') edit publishers 
+      .mb-3
+        label.form-label(for='password') Admin password:
+        input.form-control#password(type='password' name='password' required)
 
-    form(action="/game?_method=DELETE" method="POST") 
-        input(type="hidden" name="_method" value="DELETE") 
+      .mb-3
+        label.form-label(for='title') Title:
+        input.form-control#title(type='text' name='title' placeholder='Last of us' minlength='3' maxlength='30' required value=game.game_title)
 
-        input(type="hidden" name='gameId' value= `${game.id}`)
-        button(type="submit") Remove game
+      .mb-3
+        label.form-label(for='description') Description:
+        textarea.form-control#description(name='description' minlength='1' required)= game.description
+
+      .mb-3
+        label.form-label(for='image') Image URL:
+        input.form-control#image(type='text' name='image' maxlength='255' required value=game.image)
+
+      .mb-3
+        label.form-label(for='rate') Rating:
+        input.form-range#rate(type='range' name='rate' min='1' max='10' value=game.rate step='1' required)  
+
+      .mb-3
+        label.form-label(for='publisherId') Publisher:
+        select.form-select#publisherId(name='publisherId' required)
+          option(value='') --Select publisher--
+          each publisher in publishers 
+            option(value=publisher.id selected=(publisher.id == game.publisher_id))= publisher.name
+
+      button.btn.btn-primary(type='submit') Update game
+
+    a.btn.btn-secondary.mt-3(href='/publisher') Edit publishers 
+
+    form(action='/game?_method=DELETE' method='POST' class='mt-3')
+      input(type='hidden' name='_method' value='DELETE')
+      input(type='hidden' name='gameId' value=game.id)
+      button.btn.btn-danger(type='submit') Remove game

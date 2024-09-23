@@ -1,37 +1,43 @@
-extends layout 
+extends layout
 
 block content 
-
+  .container
     if !publishers 
-        h2 Sorry there is no publishers to display 
+      h2.text-center.mt-4 Sorry, there are no publishers to display
     else if games
-         h2 Cannot Delete Publisher
-         p The publisher cannot be deleted because the following games are associated with it:
-         ul
-             each game in games
-                 li
-                    a(href=`game/${game.id}`) #{game.title}  
-         p Please delete these games or reassign them to a different publisher before deleting this publisher.
-         a(href='/publishers') Back to Publishers
+      h2.text-danger.mt-4 Cannot Delete Publisher
+      p The publisher cannot be deleted because the following games are associated with it:
+      ul.list-group.mb-4
+        each game in games
+          li.list-group-item
+            a(href=`/game/${game.id}`) #{game.title}
+      p Please delete these games or reassign them to a different publisher before deleting this publisher.
+      a.btn.btn-secondary(href='/publisher') Back to Publishers
     else 
-        if errors 
-            each error of errors 
-                p= error.msg
-        h2 list of all publishers
-        ol 
-         each publisher of publishers 
-            li= `${publisher.name}`
+      if errors && errors.length
+        .alert.alert-danger
+          ul.mb-0
+            each error in errors 
+              li= error.msg
+      h2.mt-4 List of All Publishers
+      table.table
+        thead
+          tr
+            th Name
+            th Actions
+        tbody
+          each publisher in publishers
+            tr
+              td
+                form.d-flex.align-items-center(action='/publisher?_method=PUT' method='POST')
+                  input(type='hidden' name='publisherId' value=publisher.id)
+                  input.form-control.form-control-sm(type='text' minlength='1' maxlength='30' name='publisherName' value=publisher.name required)
+                  button.btn.btn-primary.btn-sm.ms-2(type='submit') Change
+              td
+                form.d-inline(action='/publisher?_method=DELETE' method='POST')
+                  input(type='hidden' name='_method' value='DELETE')
+                  input(type='hidden' name='publisherId' value=publisher.id)
+                  button.btn.btn-danger.btn-sm(type='submit') Remove
+    include addPublisherForm
 
-            form(action='/publisher?_method=PUT' method="POST")
-                input(type="hidden" name='publisherId' value=`${publisher.id}`)
-                input(type="text" minlength="1" maxlength="30" name='publisherName' value=`${publisher.name}` required)
-                button(type="submit") Change publisher name
-            form(action="/publisher?_method=DELETE" method="POST") 
-                input(type="hidden" name="_method" value="DELETE") 
-
-                input(type="hidden" name='publisherId' value= `${publisher.id}`)
-                button(type="submit") Remove publisher
-        include addPublisherForm
-
-        a(href="/game/new")
-            button(type="button") Add new game 
+    a.btn.btn-primary.mt-3(href='/game/new') Add new game
