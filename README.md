@@ -113,45 +113,51 @@ inventory-application/
 └── README.md
 ```
 
-db/: Database connection and query files.
-controllers/: Route handler functions for games and publishers.
-routes/: Express route definitions.
-views/: Pug templates for rendering HTML.
-public/: Static assets like CSS files.
-app.js: The main application file.
-Technologies Used
-Node.js: JavaScript runtime environment.
-Express.js: Web framework for Node.js.
-PostgreSQL: Relational database management system.
-pg (node-postgres): PostgreSQL client for Node.js.
-Pug: Template engine for generating HTML.
-Bootstrap: CSS framework for responsive design.
-dotenv: Loads environment variables from a .env file.
-Express Validator: Middleware for validating and sanitizing user input.
+## Project Structure
+- **db/**: Database connection and query files.
+- **controllers/**: Route handler functions for games and publishers.
+- **routes/**: Express route definitions.
+- **views/**: Pug templates for rendering HTML.
+- **public/**: Static assets like CSS files.
+- **app.js**: The main application file.
+
+## Technologies Used
+- **Node.js**: JavaScript runtime environment.
+- **Express.js**: Web framework for Node.js.
+- **PostgreSQL**: Relational database management system.
+- **pg (node-postgres)**: PostgreSQL client for Node.js.
+- **Pug**: Template engine for generating HTML.
+- **Bootstrap**: CSS framework for responsive design.
+- **dotenv**: Loads environment variables from a `.env` file.
+- **Express Validator**: Middleware for validating and sanitizing user input.
 
 ## Usage
-### Browsing Games
-Home Page: Navigate to the home page to see a list of games.
-Search: Use the search form to filter games by title, publisher, or category.
-Game Details: Click on a game card to view its details.
-Managing Games
-Add New Game: Click on the "Add new game" button and fill out the form.
-Edit Game: From a game's detail page, click on the "Edit" button to modify its details.
-Delete Game: From the edit page, use the "Remove game" button to delete the game.
-Managing Publishers
-View Publishers: Click on "Edit publishers" to see a list of all publishers.
-Add Publisher: Use the form at the bottom of the publishers list to add a new publisher.
-Edit Publisher: Modify a publisher's name directly in the list and click "Change".
-Delete Publisher: Click "Remove" to delete a publisher (if no games are associated).
-##Acknowledgments
-This project was developed as a practice exercise to enhance understanding of SQL databases integration with Node.js and Express.js. It draws inspiration from various tutorials and documentation:
 
-[Node.js Official Documentation]('https://nodejs.org/en')
-[Express.js Official Documentation]('https://expressjs.com/')
-[PostgreSQL Official Documentation]('https://www.postgresql.org/')
-[node-postgres Documentation]('https://node-postgres.com/')
-[Bootstrap Documentation]('https://getbootstrap.com/')
-[Pug Documentation]('https://pugjs.org/api/getting-started.html')
+### Browsing Games
+- **Home Page**: Navigate to the home page to see a list of games.
+- **Search**: Use the search form to filter games by title, publisher, or category.
+- **Game Details**: Click on a game card to view its details.
+
+### Managing Games
+- **Add New Game**: Click on the "Add new game" button and fill out the form.
+- **Edit Game**: From a game's detail page, click on the "Edit" button to modify its details.
+- **Delete Game**: From the edit page, use the "Remove game" button to delete the game.
+
+### Managing Publishers
+- **View Publishers**: Click on "Edit publishers" to see a list of all publishers.
+- **Add Publisher**: Use the form at the bottom of the publishers list to add a new publisher.
+- **Edit Publisher**: Modify a publisher's name directly in the list and click "Change".
+- **Delete Publisher**: Click "Remove" to delete a publisher (if no games are associated).
+
+## Acknowledgments
+This project was developed as a practice exercise to enhance understanding of SQL databases integration with Node.js and Express.js. It draws inspiration from various tutorials and documentation:
+- [Node.js Official Documentation](https://nodejs.org/)
+- [Express.js Official Documentation](https://expressjs.com/)
+- [PostgreSQL Official Documentation](https://www.postgresql.org/)
+- [node-postgres Documentation](https://node-postgres.com/)
+- [Bootstrap Documentation](https://getbootstrap.com/)
+- [Pug Documentation](https://pugjs.org/)
+
 
 ## License
 This project is open-source and available under the [MIT]('https://opensource.org/license/mit') License.
