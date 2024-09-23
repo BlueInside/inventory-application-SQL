@@ -41,6 +41,14 @@ SELECT DISTINCT games.*, publishers.name AS publisher_name
     return rows;
 }
 
+async function deleteGame(gameId) {
+    const result = await pool.query(`
+        DELETE FROM games 
+        WHERE id = $1
+        `, [gameId])
+}
+
+
 async function getGame(id) {
     const { rows: gameRows } = await pool.query(`
        SELECT 
@@ -125,6 +133,7 @@ module.exports = {
     getAllGames,
     getGame,
     updateGame,
+    deleteGame,
     getAllPublishers,
     getAllCategories,
     createPublisher,
