@@ -4,10 +4,11 @@ const gameRouter = express.Router();
 const { gameValidations, validate } = require('../validation/updateGame')
 const asyncHandler = require('express-async-handler');
 const { addGameValidations, validateAddGame } = require('../validation/addGame')
+const { deleteGameValidation, validateGameDeletion } = require('../validation/deleteGame')
 
 gameRouter.post('/', addGameValidations, asyncHandler(validateAddGame), asyncHandler(gameController.addGame));
 
-gameRouter.delete('/', asyncHandler(gameController.deleteGame));
+gameRouter.delete('/:gameId/edit', deleteGameValidation, asyncHandler(validateGameDeletion), asyncHandler(gameController.deleteGame));
 
 gameRouter.put('/:gameId', gameValidations(), validate, asyncHandler(gameController.updateGame))
 

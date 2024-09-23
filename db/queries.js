@@ -73,11 +73,13 @@ async function getGame(id) {
 async function createGame(title, description, imageUrl, rate, publisherId) {
     const response = await pool.query(`
         INSERT INTO games (title, description, image, rate, publisher_id)
-        VALUES($1,$2,$3,$4,$5);
+        VALUES($1,$2,$3,$4,$5)
+        RETURNING id;
         `, [title, description, imageUrl, rate, publisherId])
 
 
-    console.log('DB response: ', response)
+    console.log('DB response: ', response.rows[0])
+    return response.rows[0];
 }
 
 async function updateGame(title, description, imageUrl, rate, publisherId, gameId) {

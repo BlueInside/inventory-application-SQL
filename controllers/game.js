@@ -26,11 +26,9 @@ async function addGame(req, res) {
         throw new Error('Received invalid data to create new game to the database.')
     }
 
-    const newGame = await db.createGame(title, description, image, rate, publisherId);
+    const game = await db.createGame(title, description, image, rate, publisherId);
 
-    console.log(newGame);
-
-    res.send('Game added successfully')
+    res.redirect(`/game/${game.id}`)
 }
 
 async function addGameForm(req, res) {
