@@ -4,6 +4,15 @@ block content
 
     if !publishers 
         h2 Sorry there is no publishers to display 
+    else if games
+         h2 Cannot Delete Publisher
+         p The publisher cannot be deleted because the following games are associated with it:
+         ul
+             each game in games
+                 li
+                    a(href=`game/${game.id}`) #{game.title}  
+         p Please delete these games or reassign them to a different publisher before deleting this publisher.
+         a(href='/publishers') Back to Publishers
     else 
         if errors 
             each error of errors 

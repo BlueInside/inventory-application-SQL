@@ -25,8 +25,9 @@ async function getAllPublishers(req, res, next) {
 
 async function deletePublisher(req, res, next) {
     const publisherId = req.body.publisherId;
+    let games = null;
     try {
-        await db.deletePublisher(publisherId);
+        games = await db.deletePublisher(publisherId);
 
     } catch (error) {
         throw new Error('Failed to delete publisher.')
@@ -37,14 +38,15 @@ async function deletePublisher(req, res, next) {
     if (!publishers) {
         throw new Error('Failed to load publishers.')
     }
-    res.render('displayPublishers', { publishers })
+
+    res.render('displayPublishers', { publishers, games })
 }
 
 async function changePublisherName(req, res, next) {
     const publisherId = req.body.publisherId;
     const name = req.body.publisherName
 
-    if (!name || publisherId) {
+    if (!name || !publisherId) {
         throw new Error('Received invalid data, publisher name change failed.')
     }
     try {

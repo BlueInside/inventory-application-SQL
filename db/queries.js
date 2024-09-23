@@ -116,6 +116,16 @@ async function createPublisher(name) {
 }
 
 async function deletePublisher(id) {
+
+    const { rows: games } = await pool.query(`
+        SELECT * FROM games 
+        WHERE publisher_id = $1
+        `, [id]);
+
+    if (games.length > 0) {
+        return games;
+    }
+
     await pool.query(`
         DELETE FROM publishers WHERE id = $1;
         `, [id])

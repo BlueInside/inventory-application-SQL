@@ -5,6 +5,7 @@ const publisherController = require('../controllers/publisher')
 const { publisherValidation, validateAndRenderUpdateForm, validateAndRenderPublishers } = require('../validation/addPublisher')
 
 publisherRouter.get('/', asyncHandler(publisherController.getAllPublishers));
+
 publisherRouter.put('/', publisherValidation(), validateAndRenderPublishers, asyncHandler(publisherController.changePublisherName))
 
 publisherRouter.post('/', publisherValidation(), validateAndRenderPublishers, asyncHandler(publisherController.addPublisher));
