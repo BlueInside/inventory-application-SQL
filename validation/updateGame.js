@@ -1,6 +1,19 @@
 const { body, validationResult } = require('express-validator');
 const db = require('../db/queries');
+require('dotenv').config();
+
 const gameValidations = () => [
+    body('password')
+        .notEmpty()
+        .withMessage('Password cannot be empty.')
+        .custom(value => {
+            const isInvalidPassword = process.env.FORMPASSWORD !== value;
+            if (isInvalidPassword) {
+                throw new Error('Wrong admin password.')
+            } else {
+                return true;
+            }
+        }),
     body('title')
         .notEmpty().withMessage('Title field cannot be empty.')
         .isLength({ min: 3, max: 30 }).withMessage('Title field must be between 3-30 characters long.')
@@ -10,11 +23,12 @@ const gameValidations = () => [
         .isLength({ min: 1, max: 255 }).withMessage('Description must be between 1-255 characters long.')
     ,
     body('image')
+        .optional({ checkFalsy: true })
         .notEmpty().withMessage('Image field cannot be empty.')
-        .isURL().withMessage('Image must be valid URL')
+        .withMessage('Image must be valid URL')
     ,
-    body('publisher_id')
-        .optional().notEmpty().withMessage('publisher field cannot be empty.')
+    body('publisherId')
+        .trim().notEmpty().withMessage('publisher field cannot be empty.')
 ]
 
 async function validate(req, res, next) {

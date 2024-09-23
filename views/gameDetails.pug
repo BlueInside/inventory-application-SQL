@@ -7,7 +7,7 @@ block content
             h2= game.game_title 
             a(href=`/game/${game.id}/edit`) 
                 button edit
-        img(src=game.image, alt=`${game.name}'s image`)
+        img(src!=game.image, alt=`${game.name}'s image`)
         p= `Publisher: ${game.publisher_name}`
         p= `Rating: ${game.rate}/10`
         p= game.description

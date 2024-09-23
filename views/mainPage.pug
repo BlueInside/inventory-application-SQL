@@ -15,7 +15,7 @@ block content
                     a(href=`/game/${game.id}`)
                 
                         div 
-                            img(src=game.image, alt=`${game.title} image`)
+                            img(src!=`${game.image}`, alt=`${game.title} image`)
                             p= game.title 
 
 

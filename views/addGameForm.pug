@@ -2,7 +2,12 @@ extends layout
 
 block content
     h2 Please provide some details about the game.
+    if errors 
+        each error of errors    
+            p= error.msg
     form(action="/game" METHOD='POST')
+        label Admin password: 
+            input(type="password" name="password" required)
         label Title:
             input(type="text" name='title' placeholder='Last of us' minlength="3" maxlength="30")
         label Description:
@@ -10,13 +15,13 @@ block content
         label Image url:    
             input(type="text" maxlength='255' name='image' placeholder='direct url to the image')
         label Rating: 
-            input(type="range" min='1' max='10' value='5' step='1')
-        label Publisher: 
-            select(name='publisher_id')
+            input(type="range" name="rate" min='1' max='10' value='5' step='1')
+         label Publisher: 
+            select(name='publisherId')
                 option(value="") --Select publisher--
                 each publisher in publishers 
                     option(value=`${publisher.id}`) #{publisher.name}
-        button(type='submit') Add game.
+        button(type='submit') Add game
 
     a(href="/publisher")
         button(type="button") Publishers setting 
