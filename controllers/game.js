@@ -77,9 +77,14 @@ async function deleteGame(req, res) {
         throw new Error('Received wrong game details, failed to delete game from database.')
     }
 
-    await db.deleteGame();
+    try {
+        await db.deleteGame(gameId);
 
-    res.send(`Game: ${gameId} has been deleted`)
+    } catch (error) {
+        throw new Error('Failed to delete game from the database.')
+    }
+
+    res.redirect(`/`)
 };
 
 async function editGameDetails(req, res) {
