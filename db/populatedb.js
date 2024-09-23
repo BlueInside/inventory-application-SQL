@@ -138,7 +138,7 @@ VALUES
 async function main() {
     console.log('Seeding database...');
     const client = new Client({
-        connectionString: process.env.PGCSTRING
+        connectionString: process.env.DATABASE_URL
     });
 
     try {
