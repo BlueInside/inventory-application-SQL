@@ -60,7 +60,7 @@ FORMPASSWORD= password that will be used as admin password to edit remove games
 ```
 ## Database setup
 
-###Create the database
+### Create the database
 Log into PostgreSQL and create new database:
 ```sql
 CREATE DATABASE your_database_name;
@@ -72,15 +72,15 @@ node populatedb.js
 ```
 This script will create the necessary tables and insert sample data for publishers, categories, games, and game categories.
 
-##Running the Application
-###Start the Express server:
+## Running the Application
+### Start the Express server:
 
 ```bash
 npm start
 The application will be running at http://localhost:3000.
 ```
 
-##Project Structure
+## Project Structure
 ```css
 inventory-application/
 ├── db/
@@ -129,8 +129,8 @@ Bootstrap: CSS framework for responsive design.
 dotenv: Loads environment variables from a .env file.
 Express Validator: Middleware for validating and sanitizing user input.
 
-##Usage
-###Browsing Games
+## Usage
+### Browsing Games
 Home Page: Navigate to the home page to see a list of games.
 Search: Use the search form to filter games by title, publisher, or category.
 Game Details: Click on a game card to view its details.
@@ -153,10 +153,10 @@ This project was developed as a practice exercise to enhance understanding of SQ
 [Bootstrap Documentation]('https://getbootstrap.com/')
 [Pug Documentation]('https://pugjs.org/api/getting-started.html')
 
-##License
+## License
 This project is open-source and available under the [MIT]('https://opensource.org/license/mit') License.
 
-##Contact
+## Contact
 For any inquiries or feedback, please contact:
 
 Author: Karol Puławski
